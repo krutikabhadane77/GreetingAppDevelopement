@@ -1,8 +1,18 @@
 package com.example.greetingapp.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Greeting {
+    @Id
+    @Column(name="id", nullable=false)
     private long id;
+    @Column(name="message", nullable=false)
     private String message;
+
+    public Greeting(){}
 
     public Greeting(long id, String message) {
         this.id = id;

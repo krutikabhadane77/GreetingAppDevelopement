@@ -4,6 +4,7 @@ import com.example.greetingapp.service.IGreetingService;
 import com.example.greetingapp.model.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +38,15 @@ public class GreetingController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         return greetingService.getGreetingMessage(user);
+    }
+
+    @PostMapping("/greeting")
+    public Greeting addGreeting(@RequestParam(name = "firstName", defaultValue = "Hello") String firstName,
+                                @RequestParam(name = "lastName", defaultValue = "World") String lastName){
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return greetingService.addGreetingMessage(user);
     }
 
 }
