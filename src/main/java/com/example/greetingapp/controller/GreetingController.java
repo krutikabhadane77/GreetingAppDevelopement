@@ -1,4 +1,5 @@
 package com.example.greetingapp.controller;
+import com.example.greetingapp.model.User;
 import com.example.greetingapp.service.IGreetingService;
 import com.example.greetingapp.model.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,18 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(),String.format(template,name));
     }
 
-    @GetMapping("/greeting")
+   /* @GetMapping("/greeting")
     public String greeting(){
         return greetingService.getGreetingMessage();
+    } */
+
+    @GetMapping("/greeting")
+    public String greeting(@RequestParam(name = "firstName", defaultValue = "Hello") String firstName,
+                           @RequestParam(name = "lastName", defaultValue = "World") String lastName){
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return greetingService.getGreetingMessage(user);
     }
 
 }
