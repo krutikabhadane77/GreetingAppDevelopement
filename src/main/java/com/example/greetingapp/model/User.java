@@ -1,8 +1,17 @@
 package com.example.greetingapp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
     private String firstName;
     private String lastName;
+
+    public User(){}
 
     public String getFirstName() {
         return firstName;
