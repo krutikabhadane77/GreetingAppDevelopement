@@ -52,4 +52,13 @@ public class GreetingService implements IGreetingService{
         }
         return null;
     }
+
+    @Override
+    public Greeting deleteGreetingMsg(long id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        if (greeting.isPresent()) {
+            greetingRepository.deleteById(id);
+        }
+        return greeting.get();
+    }
 }
